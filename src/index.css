@@ -1,0 +1,97 @@
+@import "tailwindcss";
+
+@theme {
+  --color-brand-bg-primary: #050811;
+  --color-brand-bg-secondary: #0c101d;
+  --color-brand-bg-tertiary: #141b2d;
+  --color-brand-border: #1e293b;
+  
+  --color-brand-fire: #f97316;
+  --color-brand-fire-alert: #ef4444;
+  --color-brand-flood: #3b82f6;
+  --color-brand-teal: #06b6d4;
+  --color-brand-safe: #10b981;
+  --color-brand-warning: #eab308;
+
+  --font-sans: 'Inter', system-ui, -apple-system, sans-serif;
+  --font-mono: 'JetBrains Mono', 'Courier New', monospace;
+
+  /* Custom animations */
+  --animate-scan: scan 3s linear infinite;
+  --animate-pulse-slow: pulse-slow 2s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+  --animate-wave-slow: wave-slow 8s ease-in-out infinite;
+  --animate-ember-slow: ember-slow 5s ease-in-out infinite;
+  --animate-radar-sweep: radar-sweep 4s linear infinite;
+}
+
+@keyframes scan {
+  0% { top: 0%; }
+  50% { top: 100%; }
+  100% { top: 0%; }
+}
+
+@keyframes pulse-slow {
+  0%, 100% { opacity: 1; transform: scale(1); }
+  50% { opacity: 0.5; transform: scale(1.08); }
+}
+
+@keyframes wave-slow {
+  0%, 100% { border-radius: 40% 60% 70% 30% / 40% 50% 60% 50%; transform: rotate(0deg); }
+  50% { border-radius: 70% 30% 50% 50% / 30% 60% 40% 70%; transform: rotate(180deg); }
+}
+
+@keyframes ember-slow {
+  0%, 100% { opacity: 0.1; transform: scale(1) translateY(0); filter: blur(40px); }
+  50% { opacity: 0.35; transform: scale(1.15) translateY(-10px); filter: blur(50px); }
+}
+
+@keyframes radar-sweep {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
+/* Base resets & Leaflet overrides */
+body {
+  margin: 0;
+  padding: 0;
+  background-color: #050811;
+  color: #f3f4f6;
+  overflow: hidden;
+  font-family: 'Inter', sans-serif;
+}
+
+/* Custom scrollbars */
+::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+
+::-webkit-scrollbar-track {
+  background: #050811;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #1e293b;
+  border-radius: 3px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #475569;
+}
+
+/* Pulsing Leaflet Circle Marker styling */
+.pulsing-marker {
+  animation: marker-pulse 1.5s ease-out infinite;
+}
+
+@keyframes marker-pulse {
+  0% {
+    box-shadow: 0 0 0 0 rgba(239, 68, 68, 0.7);
+  }
+  70% {
+    box-shadow: 0 0 0 10px rgba(239, 68, 68, 0);
+  }
+  100% {
+    box-shadow: 0 0 0 0 rgba(239, 68, 68, 0);
+  }
+}
